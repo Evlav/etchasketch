@@ -1,1 +1,49 @@
+.box {
     
+    
+    background-color: grey;
+    flex-grow: 1;
+    
+    
+  }
+
+
+.flex-container {
+
+    background-color: aqua;
+   
+    
+}
+
+
+button {
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  #gridcontainer {
+    background-color: rgb(210, 210, 210);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    
+ 
+    
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 600px;
+    flex-grow: 1;
+    
+  }
