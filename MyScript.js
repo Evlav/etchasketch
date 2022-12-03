@@ -3,7 +3,9 @@
 
 
 const container = document.querySelector('#container');
-
+const buttoncontainer = document.querySelector('#buttoncontainer');
+var ismousedown = false;
+var currentcolor = 'blue';
 const maxsize = 600;
 var gridsize = 4;
 
@@ -11,9 +13,14 @@ var gridsize = 4;
 //add button
 const button = document.createElement('button');
 button.textContent = 'Change Grid Size';
-container.appendChild(button);
+buttoncontainer.appendChild(button);
 button.addEventListener("click", newGrid);
 
+//add button
+const changecolorbutton = document.createElement('button');
+changecolorbutton.textContent = 'Change Color';
+buttoncontainer.appendChild(changecolorbutton);
+changecolorbutton.addEventListener("click", changeColor);
 
 createGrid(gridsize);
 
@@ -22,13 +29,20 @@ createGrid(gridsize);
 
 function newGrid(){
     let person = prompt("Enter number of squares per side ");
+    
+    if (person > 100) {
+        person = 100;
+    }
     console.log(person);
     gridsize = person;
     container.removeChild(gridcontainer);
     createGrid(gridsize);
 }
 
-
+function changeColor(){
+    let promptus = prompt("Enter color name or hexcode ");
+    currentcolor = promptus;
+}
 
 function createGrid (gridsize){
     
@@ -63,15 +77,29 @@ function createGrid (gridsize){
         
             
             newDiv2.className = 'box';
-            newDiv2.setAttribute('style', 'color: blue; background: grey;'); 
+            newDiv2.setAttribute('style', 'background: grey;'); 
             
+            //hover function
+            newDiv2.addEventListener('mouseenter', hoverEnter, true);
+            newDiv2.addEventListener('mouseleave', hoverExit, true);
 
-            newDiv2.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = "red";
-            })
-            newDiv2.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = "grey";
-            })
+            //click function
+            newDiv2.addEventListener('mousedown', function() {
+                console.log(ismousedown);
+                ismousedown = true;
+                this.style.backgroundColor = currentcolor;
+                this.classList.add('colored');
+                console.log('mousedown');
+            });
+
+            //unclick
+            newDiv2.addEventListener('mouseup', function() {
+                ismousedown = false;
+                console.log('mouseup');
+            });
+
+           
+
             newDiv.appendChild(newDiv2);
         }
 
@@ -83,6 +111,27 @@ function createGrid (gridsize){
 
 }
 
+function hoverEnter (event){
+    this.classList.add('mousedOver');
+    this.style.backgroundColor = "red";
+
+    if (ismousedown == true) {
+        this.style.backgroundColor = currentcolor;
+        this.classList.add('colored');
+    }
+ 
+}
+
+function hoverExit (event) {
+    this.classList.remove('mousedOver');
+    if (this.classList.contains('colored') == true) {
+        this.style.backgroundColor = currentcolor;
+    }
+    else{
+        this.style.backgroundColor = "grey";
+    };
+    
+}
 
 //fix grid changer
 //hover changes color, click actually colors it in

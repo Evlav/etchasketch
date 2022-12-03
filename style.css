@@ -1,20 +1,19 @@
-.box {
-    
-    
-    background-color: grey;
-    flex-grow: 1;
-    
-    
-  }
-
-
-.flex-container {
-
-    background-color: aqua;
-   
-    
+body{
+  background-color: aqua;
 }
 
+#container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 800px;
+  justify-content: space-around;
+}
+
+#buttoncontainer{
+  display: flex;
+  align-items: center;
+}
 
 button {
     border: none;
@@ -23,7 +22,8 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 32px;
+    font-family: 'Courier New', Courier, monospace;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -34,9 +34,6 @@ button {
     align-items: center;
     display: flex;
     flex-direction: column;
-    
- 
-    
   }
 
   .row {
@@ -45,5 +42,10 @@ button {
     align-items: stretch;
     width: 600px;
     flex-grow: 1;
-    
   }
+
+  .box {
+    background-color: grey;
+    flex-grow: 1;
+  }
+
